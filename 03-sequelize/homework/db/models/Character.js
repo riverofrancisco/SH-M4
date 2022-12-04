@@ -4,15 +4,31 @@ module.exports = sequelize => {
   sequelize.define('Character', {
     code: {
       type: DataTypes.STRING(5),
-      primaryKey: true
+      primaryKey: true,
+      validate: {
+        validateCode(value){
+          if(value.toLowerCase() === 'henry'){
+            throw new Error('Código Incorrecto')
+          }
+        }
+      }
     },
     name: {
       type: DataTypes.STRING,
       unique: true,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notIn: ['Henry','SoyHenry','Soy Henry']
+      }
+
     },
     age: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER, //ahora defino un getter (una FORMA de mostrar los datos)
+      get(){
+        let value = this.getDataValue('age');
+        if(!value) return null;
+        else return value + ' years old.';
+      }
     },
     race: {
       type: DataTypes.ENUM('Human', 'Elf', 'Machine', 'Demon', 'Animal', 'Other'),
