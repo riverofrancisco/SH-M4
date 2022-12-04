@@ -66,7 +66,7 @@ Van a tener ya los middlewares para cada modelo configurados y el esqueleto de l
 #### POST /character
 
 Debe recibir por body los datos del modelo de `Character` y crear una instancia del mismo en la base de datos. 
-  * De no recibir todos los parámetros necesarios debería devolver un status 404 con el mensaje "Falta enviar datos obligatorios"
+  * De no recibir todos los parámetros necesarios debería devolver un status 404 con el mensaje " "
   * Si alguna validación interna de la base de datos falle debe devolver un status 404 con el mensaje "Error en alguno de los datos provistos"
   * Si todos los datos son provistos debera devolver un status 201 y el objeto del personaje
 
